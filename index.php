@@ -4,3 +4,5 @@ class Hello {
     return $params;
   }
 }
+
+?>
