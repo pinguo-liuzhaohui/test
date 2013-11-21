@@ -12,6 +12,13 @@ php:
 service:
   - mongodb
   - redis
+
+## optionally specify a list of environments, for example to test different RDBMS
+env:
+   - DB=mongo
+   #- DB=mysql
+
+## execute any number of scripts before the test run, custom env's are available as variables
 # Clone project repository from GitHub
 # cd to clone directory
 # Checkout commit for this build
@@ -21,21 +28,17 @@ before_install:
    - echo "before_install"
    - ls -l /home/travis/
    - pwd
-   - set
 
 # step 2
 install:
    - echo "install"
    - ls -l /home/travis/build/
+   - ls -l /home/travis/builds/
+   - cat /home/travis/build.sh
+   - cat /home/travis/state.log
    - pstree
-## optionally specify a list of environments, for example to test different RDBMS
-env:
-   - DB=mongo
-   #- DB=mysql
 
-## execute any number of scripts before the test run, custom env's are available as variables
-
-# step 4
+# step 3
 before_script:
    - echo "before_script"
    - ls -l /home/travis/build/pinguo-liuzhaohui/
@@ -64,6 +67,7 @@ after_script:
   - echo "after_script"
   - pstree
   - pwd
+  - cat /home/travis/state.log
   - ls -l
 ## configure notifications (email, IRC, campfire etc)
 #notifications:
