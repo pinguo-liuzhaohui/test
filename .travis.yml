@@ -28,7 +28,8 @@ env:
 before_install:
    - echo "before_install"
    - ls /etc/init.d/
-   - cat /etc/init.d/redis
+   - cat /etc/init.d/redis-server
+   - cat /etc/init.d/mongod
    - ls -l /home/travis/
    - pwd
 
