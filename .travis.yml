@@ -9,14 +9,14 @@ php:
   - 5.3
   # aliased to a recent 5.4.x version
   #- 5.4
-services:
-  - mongodb
-  - redis-server # --port 7777
+#services:
+#  - mongodb
+#  - redis-server # --port 7777
 
 ## optionally specify a list of environments, for example to test different RDBMS
-env:
-   - DB=mongo
-   #- DB=mysql
+#env:
+#   - DB=mongo
+#   #- DB=mysql
 
 # now, all services will be started and env will be set
 ## execute any number of scripts before the test run, custom env's are available as variables
@@ -26,34 +26,31 @@ env:
 # and than go to steps
 # step 1
 before_install:
-   - echo "before_install"
-   - ls -l /etc/init.d/
-   #- cat /etc/init.d/redis-server
-   #- cat /etc/init.d/mongodb
-   - which mongod
-   - which redis-server
-   - ls -l /home/travis/
-   - pwd
+   - export TEST_DIR=$PWD
+   - export BASE_DIR=`dirname $PWD`
+   - export LIB_DIR=$BASE_DIR/lib
+   - export MONGODB_DIR=$BASE_DIR/mongodb
+   - export REDIS_DIR=$BASE_DIR/redis
+   - mkdir -p $LIB_DIR
+   - mkdir -p $MONGODB_DIR
+   - mkdir -p $REDIS_DIR
 
 # step 2
 install:
-   - echo "install"
-   - ls -l /home/travis/build/
-   - ls -l /home/travis/builds/
-   - pstree
+   #- echo "install"
+   - export YII_DOWNLOAD='yii-1.1.13.e9e4a0'
+   - wget "https://yii.googlecode.com/files/${YII_DOWNLOAD}.zip" -O $LIB_DIR/${BASE_DOWNLOAD}.zip
+   - unzip $BASE_DIR/${YII_DOWNLOAD}.zip -d $BASE_DIR
+   - cp -rf $BASE_DIR/${YII_DOWNLOAD}/framework $LIB_DIR/yii-1.1.13
 
 # step 3
 before_script:
-   - echo "before_script"
-   - mkdir $HOME/mongodb/
-   - mkdir $HOME/redis/
-   - mongod --port 8888 --dbpath $HOME/mongodb/ &
+   - mongod --port 8888 --dbpath $MONGODB_DIR &
    - sleep 3
    - redis-server --port 9999 &
    - sleep 1
-   - ls -l /home/travis/build/pinguo-liuzhaohui/
-   - ls -l
    - pstree
+   - ls -l $BASE_DIR
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS hello_world_test;" -uroot; fi
@@ -62,7 +59,9 @@ before_script:
 ## use the $DB env variable to determine the phpunit.xml to use
 #script: phpunit --configuration phpunit_$DB.xml --coverage-text
 # step 4
-script: phpunit --coverage-text test/
+script: 
+  - cd $TEST_DIR
+  - phpunit --coverage-text test/
 
 # step 5
 finish:
