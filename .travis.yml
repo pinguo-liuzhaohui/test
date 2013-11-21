@@ -39,7 +39,7 @@ before_install:
 install:
    #- echo "install"
    - export YII_DOWNLOAD='yii-1.1.13.e9e4a0'
-   - wget "https://yii.googlecode.com/files/${YII_DOWNLOAD}.zip" -O $LIB_DIR/${YII_DOWNLOAD}.zip
+   - wget "https://yii.googlecode.com/files/${YII_DOWNLOAD}.zip" -O $BASE_DIR/${YII_DOWNLOAD}.zip
    - unzip $BASE_DIR/${YII_DOWNLOAD}.zip -d $BASE_DIR
    - cp -rf $BASE_DIR/${YII_DOWNLOAD}/framework $LIB_DIR/yii-1.1.13
 
