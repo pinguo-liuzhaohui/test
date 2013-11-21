@@ -11,13 +11,14 @@ php:
   #- 5.4
 services:
   - mongodb
-  - redis
+  - redis-server --port 7777
 
 ## optionally specify a list of environments, for example to test different RDBMS
 env:
    - DB=mongo
    #- DB=mysql
 
+# now, all services will be started and env will be set
 ## execute any number of scripts before the test run, custom env's are available as variables
 # Clone project repository from GitHub
 # cd to clone directory
