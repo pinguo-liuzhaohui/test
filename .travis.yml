@@ -60,9 +60,9 @@ after_success:
   - echo "after_success"
   - ls -l
 
-# step 6 on success 2
-deploy:
-  - echo "deploy"
+## step 6 on success 2
+#deploy:
+#  - echo "deploy"
 
 # step 6 on failure
 after_failure:
