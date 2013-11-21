@@ -50,6 +50,7 @@ before_script:
    - redis-server --port 9999 &
    - sleep 1
    - pstree
+   - git clone https://github.com/PGWireless/phplib
    - ls -l $BASE_DIR
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database hello_world_test;" -U postgres; fi
