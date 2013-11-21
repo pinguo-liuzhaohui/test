@@ -47,6 +47,10 @@ before_script:
    - echo "before_script"
    - mkdir $HOME/mongodb/
    - mkdir $HOME/redis/
+   - mongod --port 8888 --dbpath $HOME/mongodb/ &
+   - sleep 3
+   - redis-server --port 9999 &
+   - sleep 1
    - ls -l /home/travis/build/pinguo-liuzhaohui/
    - ls -l
    - pstree
