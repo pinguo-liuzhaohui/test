@@ -34,8 +34,6 @@ install:
    - echo "install"
    - ls -l /home/travis/build/
    - ls -l /home/travis/builds/
-   - cat /home/travis/build.sh
-   - cat /home/travis/state.log
    - pstree
 
 # step 3
@@ -53,16 +51,24 @@ before_script:
 # step 4
 script: phpunit --coverage-text test/
 
-# step 5 on success
+# step 5
+finish:
+  - echo "finish"
+
+# step 6 on success 1
 after_success:
   - echo "after_success"
   - ls -l
 
-# step 5 on failure
+# step 6 on success 2
+deploy:
+  - echo "deploy"
+
+# step 6 on failure
 after_failure:
   - echo "after_failure"
 
-# step 6
+# step 7
 after_script:
   - echo "after_script"
   - pstree
