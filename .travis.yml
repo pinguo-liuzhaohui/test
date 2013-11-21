@@ -28,8 +28,8 @@ env:
 before_install:
    - echo "before_install"
    - ls -l /etc/init.d/
-   - cat /etc/init.d/redis-server
-   - cat /etc/init.d/mongodb
+   #- cat /etc/init.d/redis-server
+   #- cat /etc/init.d/mongodb
    - which mongod
    - which redis-server
    - ls -l /home/travis/
