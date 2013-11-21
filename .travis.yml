@@ -11,7 +11,7 @@ php:
   #- 5.4
 services:
   - mongodb
-  - redis-server --port 7777
+  - redis-server # --port 7777
 
 ## optionally specify a list of environments, for example to test different RDBMS
 env:
@@ -27,6 +27,8 @@ env:
 # step 1
 before_install:
    - echo "before_install"
+   - ls /etc/init.d/
+   - cat /etc/init.d/redis
    - ls -l /home/travis/
    - pwd
 
