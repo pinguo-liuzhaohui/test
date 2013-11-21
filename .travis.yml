@@ -9,7 +9,7 @@ php:
   - 5.3
   # aliased to a recent 5.4.x version
   #- 5.4
-service:
+services:
   - mongodb
   - redis
 
@@ -41,6 +41,7 @@ before_script:
    - echo "before_script"
    - ls -l /home/travis/build/pinguo-liuzhaohui/
    - ls -l
+   - pstree
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "DROP DATABASE IF EXISTS hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "pgsql" ]]; then psql -c "create database hello_world_test;" -U postgres; fi
 #  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS hello_world_test;" -uroot; fi
@@ -55,14 +56,10 @@ script: phpunit --coverage-text test/
 finish:
   - echo "finish"
 
-# step 6 on success 1
+# step 6 on success
 after_success:
   - echo "after_success"
   - ls -l
-
-## step 6 on success 2
-#deploy:
-#  - echo "deploy"
 
 # step 6 on failure
 after_failure:
