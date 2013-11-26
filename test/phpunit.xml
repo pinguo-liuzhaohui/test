@@ -1,0 +1,19 @@
+<phpunit bootstrap="bootstrap.php"
+		colors="false"
+		convertErrorsToExceptions="true"
+		convertNoticesToExceptions="true"
+		convertWarningsToExceptions="true"
+		stopOnFailure="false">
+	<testsuites>
+		<testsuite name="My Test Suite">
+			<directory suffix="Test.php" phpVersion="5.3.0" phpVersionOperator=">=">./</directory>
+			<!--<file phpVersion="5.3.0" phpVersionOperator=">=">/path/to/MyTest.php</file>-->
+		</testsuite>
+	</testsuites>
+
+	<!--<selenium>
+		<browser name="Internet Explorer" browser="*iexplore" />
+		<browser name="Firefox" browser="*firefox" />
+	</selenium>-->
+
+</phpunit>
