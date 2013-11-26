@@ -3,7 +3,8 @@
 /**
  * SiteController is the default controller to handle user requests.
  */
-class SiteController extends CController
+//class SiteController extends CController
+class SiteController
 {
 	/**
 	 * Index action is the default action in a controller.
