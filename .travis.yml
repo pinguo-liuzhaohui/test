@@ -42,6 +42,13 @@ install:
    - wget "https://yii.googlecode.com/files/${YII_DOWNLOAD}.zip" -O $BASE_DIR/${YII_DOWNLOAD}.zip
    - unzip $BASE_DIR/${YII_DOWNLOAD}.zip -d $BASE_DIR
    - cp -rf $BASE_DIR/${YII_DOWNLOAD}/framework $LIB_DIR/yii-1.1.13
+   - ls -l $LIB_DIR
+   - ls -l $LIB_DIR/yii-1.1.13
+   - pear channel-discover pear.phpunit.de
+   - pear remote-list -c phpunit
+   - pear install phpunit/PHPUnit-3.7.28
+   - pear install phpunit/PHPUnit_Selenium-1.3.3
+   - pear install phpunit/PHP_Invoker-1.1.3
 
 # step 3
 before_script:
